@@ -10,12 +10,20 @@ function oneRoundSim(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
 
     if(playerSelection===computerSelection) {
-        return "You tied";
+        return "You tied with computer.";
     }
 
-    if(playerSelection==="rock") {
-        if(computerSelection ==="paper") {
-            return `You lost LOL, ${}`
-        }
+    /* Losing Combos */
+    if((playerSelection==="rock" && computerSelection ==="paper") || (playerSelection==="paper" && computerSelection ==="scissors") || (playerSelection==="scissors" && computerSelection ==="rock")) {
+        return `You lost LOL, the computer's ${computerSelection} beat your ${playerSelection}.`;
+    }
+
+    /* Winning Combos */
+    if((computerSelection==="rock" && playerSelection ==="paper") || (computerSelection==="paper" && playerSelection ==="scissors") || (computerSelection==="scissors" && playerSelection ==="rock")) {
+        return `You won, your ${playerSelection} beat the computer's ${computerSelection}`;
     }
 }
+
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));

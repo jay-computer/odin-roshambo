@@ -1,0 +1,5 @@
+.player_board {
+    display: flex;
+    justify-content: space-between;
+    max-width: 50vw;
+}

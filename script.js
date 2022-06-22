@@ -1,3 +1,10 @@
+const batton = document.querySelectorAll(".on");
+let results = new Array(5);
+let playerWins = 0;
+let computerWins = 0;
+let iterations = 0;
+const output = document.querySelector(".results");
+
 function computerPlay() {
     let plays = ["rock", "paper", "scissors"];
     /* random choice */
@@ -11,78 +18,46 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
 
     if(playerSelection==computerSelection) {
-        return `You tied with computer, ${playerSelection} vs ${computerSelection}`;
+        let gameResult = `You tied with computer, ${playerSelection} vs ${computerSelection}`;
+        output.textContent = gameResult;
+        return gameResult;
     }
 
     /* Losing Combos */
     if((playerSelection==="rock" && computerSelection ==="paper") || (playerSelection==="paper" && computerSelection ==="scissors") || (playerSelection==="scissors" && computerSelection ==="rock")) {
-        return `You lost LOL, the computer's ${computerSelection} beat your ${playerSelection}.`;
+        let gameResult = `You lost LOL, the computer's ${computerSelection} beat your ${playerSelection}.`;
+        output.textContent = gameResult;
+        return gameResult;
     }
 
     /* Winning Combos */
     if((computerSelection==="rock" && playerSelection ==="paper") || (computerSelection==="paper" && playerSelection ==="scissors") || (computerSelection==="scissors" && playerSelection ==="rock")) {
-        return `You won, your ${playerSelection} beat the computer's ${computerSelection}`;
+        let gameResult = `You won, your ${playerSelection} beat the computer's ${computerSelection}`;
+        output.textContent = gameResult;
+        return gameResult;
     }
 }
 
-function game() {
-    /*
-    let results = new Array(5);
-    let playerWins = 0;
-    let computerWins = 0;
-    for (let i = 0; i < 5; i++) {
-        let choice = prompt("Rock, paper, or scissors?");
-        results[i] = playRound(choice, computerPlay());
 
-        console.log(results[i]);
 
-        if (results[i].includes("won")) {
-            playerWins = playerWins + 1;
-            
-        }
-        if (results[i].includes("lost")) {
-            computerWins = computerWins + 1;
-        }
-        
-    }
-    if(playerWins > 2) {
-        console.log("playerWins: " + playerWins);
-        return "You won out of five times!";
-    }
-    if (computerWins > 2) {
-        console.log("computerWins: " + computerWins);
-        return "You lost out of five times!";
-    }
-    if (playerWins == computerWins) {
-        console.log("playerWins: " + playerWins);
-        console.log("computerWins: " + computerWins);
-        return "You and the computer tied."
-    }
-    */
-    
-}
-const batton = document.querySelectorAll(".on");
-let results = new Array(5);
-let playerWins = 0;
-let computerWins = 0;
-let iterations = 0;
 
 function removeClass(e) {
     e.target.classList.remove("on");
 }
 
 function runGame(e) {
-    if(iterations === 5) {
+    if(iterations >= 5) {
+        output.classList.add("end");
         if(playerWins > 2) {
-            console.log("Game over, you won.");
+            output.textContent = "Game over, you won.";
             return;
         }
         if (computerWins > 2) {
-            console.log("Game over, computer won.");
+            output.textContent = "Game over, computer won.";
             return;
         }
         if (playerWins == computerWins) {
-            console.log("Game over, you and computer tied.");
+            output.textContent = "Game over, you and computer tied.";
             return;
         }    
         

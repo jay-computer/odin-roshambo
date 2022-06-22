@@ -2,7 +2,11 @@ const batton = document.querySelectorAll(".on");
 let results = new Array(5);
 let playerWins = 0;
 let computerWins = 0;
+let tieing = 0;
 let iterations = 0;
+const playerDisp = document.querySelector(".playerScore");
+const ties = document.querySelector(".ties");
+const compDisp = document.querySelector(".compScore");
 const output = document.querySelector(".results");
 
 function computerPlay() {
@@ -38,9 +42,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-
-
 function removeClass(e) {
     e.target.classList.remove("on");
 }
@@ -72,10 +73,16 @@ function runGame(e) {
     
     if (result.includes("won")) {
         playerWins = playerWins + 1;
+        playerDisp.textContent = `Player Score: ${playerWins}`;
         
     }
-    if (result.includes("lost")) {
+    else if (result.includes("lost")) {
         computerWins = computerWins + 1;
+        compDisp.textContent = `Computer Score: ${computerWins}`;
+    }
+    else {
+        tieing = tieing + 1;
+        ties.textContent = `Ties: ${tieing}`;
     }
     iterations = iterations + 1;
 }
